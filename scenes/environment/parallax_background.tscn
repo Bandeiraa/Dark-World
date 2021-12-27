@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/parallax_background/background_mountains.png" type="Texture" id=1]
+[ext_resource path="res://assets/parallax_background/background_sky.png" type="Texture" id=2]
+[ext_resource path="res://assets/parallax_background/ground.png" type="Texture" id=3]
+[ext_resource path="res://assets/parallax_background/fog.png" type="Texture" id=4]
+[ext_resource path="res://assets/parallax_background/foreground_mountains.png" type="Texture" id=5]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="BackgroundSky" type="ParallaxLayer" parent="."]
+position = Vector2( 0, 76 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="Texture" type="TextureRect" parent="BackgroundSky"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 1280, 568 )
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackgroundMountains" type="ParallaxLayer" parent="."]
+position = Vector2( 0, 76 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="Texture" type="TextureRect" parent="BackgroundMountains"]
+margin_right = 1280.0
+margin_bottom = 568.0
+rect_min_size = Vector2( 1280, 568 )
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ForegroundMountains" type="ParallaxLayer" parent="."]
+position = Vector2( 0, 76 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="Texture" type="TextureRect" parent="ForegroundMountains"]
+margin_right = 1280.0
+margin_bottom = 568.0
+rect_min_size = Vector2( 1280, 568 )
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ground" type="ParallaxLayer" parent="."]
+position = Vector2( 0, 76 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="Texture" type="TextureRect" parent="Ground"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 1280, 568 )
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fog" type="ParallaxLayer" parent="."]
+position = Vector2( 0, 76 )
+motion_mirroring = Vector2( 1280, 0 )
+
+[node name="Texture" type="TextureRect" parent="Fog"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 1280, 568 )
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

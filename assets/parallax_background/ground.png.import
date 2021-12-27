@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/2-super far.png-efc31ee8e9cb2a62e328afc8ec12c57b.stex"
+path="res://.import/ground.png-08c9f06f81f65d480c4bfa347e846f77.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/parallax_background/2-super far.png"
-dest_files=[ "res://.import/2-super far.png-efc31ee8e9cb2a62e328afc8ec12c57b.stex" ]
+source_file="res://assets/parallax_background/ground.png"
+dest_files=[ "res://.import/ground.png-08c9f06f81f65d480c4bfa347e846f77.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
