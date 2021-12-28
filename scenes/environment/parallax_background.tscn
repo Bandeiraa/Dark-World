@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/parallax_background/background_mountains.png" type="Texture" id=1]
 [ext_resource path="res://assets/parallax_background/background_sky.png" type="Texture" id=2]
@@ -8,41 +8,18 @@
 [ext_resource path="res://scenes/effects/distant_lightning.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/effects/large_lightning.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/effects/small_lightning.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scripts/environment/parallax_background.gd" type="Script" id=9]
-
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-
-uniform sampler2D noise_img;
-uniform float speed = 1.0;
-uniform vec4 smoke_color: hint_color;
-
-void fragment() {
-	vec2 uv1 = vec2(UV.x + TIME * speed, UV.y);
-	vec2 uv2 = vec2(UV.x - TIME * speed, UV.y);
-	vec2 uv3 = vec2(UV.x, UV.y);
-	
-	float noise_r = texture(noise_img, uv1).r;
-	float noise_g = texture(noise_img, uv2).g;
-	float noise_b = texture(noise_img, uv3).b;
-	
-	vec3 new_color = vec3(noise_r, noise_g, noise_b);
-	
-	float new_alpha = noise_r * noise_g * noise_b;
-	
-	COLOR.rgb = smoke_color.rgb;
-	COLOR.a = clamp(new_alpha * 5.0 * texture(TEXTURE, UV).a, 0.0, 1.0);
-}"
+[ext_resource path="res://resources/shaders/fog.gdshader" type="Shader" id=9]
+[ext_resource path="res://scenes/effects/bubble_orb.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/parallax_background/black_bar.png" type="Texture" id=11]
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
-shader_param/speed = 0.1
+shader = ExtResource( 9 )
+shader_param/speed = 0.05
+shader_param/fog_alpha = 15.0
 shader_param/smoke_color = Color( 1, 1, 1, 1 )
 shader_param/noise_img = ExtResource( 4 )
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
-script = ExtResource( 9 )
-fog_speed = 16
 
 [node name="BackgroundSky" type="ParallaxLayer" parent="."]
 motion_mirroring = Vector2( 576, 0 )
@@ -86,6 +63,12 @@ motion_mirroring = Vector2( 576, 0 )
 
 [node name="AnimatedEffects" type="Node2D" parent="ForegroundMountains"]
 
+[node name="BubbleOrb1" parent="ForegroundMountains/AnimatedEffects" instance=ExtResource( 10 )]
+position = Vector2( 114, 247 )
+
+[node name="BubbleOrb3" parent="ForegroundMountains/AnimatedEffects" instance=ExtResource( 10 )]
+position = Vector2( 362, 240 )
+
 [node name="LargeLightning" parent="ForegroundMountains/AnimatedEffects" instance=ExtResource( 7 )]
 position = Vector2( 224, 235 )
 min_wait_time = 45.0
@@ -126,11 +109,24 @@ motion_mirroring = Vector2( 576, 0 )
 
 [node name="Texture" type="TextureRect" parent="Fog"]
 material = SubResource( 2 )
-margin_top = 160.0
+margin_top = 172.0
 margin_right = 576.0
-margin_bottom = 288.0
-rect_min_size = Vector2( 576, 128 )
+margin_bottom = 300.0
+rect_min_size = Vector2( 576, 64 )
 texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlackBar" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2( 576, 0 )
+
+[node name="Texture" type="TextureRect" parent="BlackBar"]
+margin_right = 576.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 576, 320 )
+texture = ExtResource( 11 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false

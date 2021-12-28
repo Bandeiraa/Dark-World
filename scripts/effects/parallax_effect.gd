@@ -21,9 +21,11 @@ func get_random_wait_time() -> float:
 	
 func on_timer_timeout(timer: Timer) -> void:
 	timer.queue_free()
-	frame = 0
+	playing = true
 	play("effect")
 	
 	
 func on_animation_finished() -> void:
 	create_timer()
+	playing = false
+	frame = 0
