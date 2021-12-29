@@ -29,6 +29,10 @@ _global_script_class_icons={
 config/name="Dark World"
 config/icon="res://icon.png"
 
+[autoload]
+
+Interface="*res://scenes/gui/interface.tscn"
+
 [display]
 
 window/size/width=576
