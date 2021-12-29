@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "CharacterTemplate",
 "language": "GDScript",
 "path": "res://scripts/characters/character_template.gd"
+}, {
+"base": "Node2D",
+"class": "CinematicManager",
+"language": "GDScript",
+"path": "res://scripts/management/cinematic_manager.gd"
 } ]
 _global_script_class_icons={
 "CharacterStats": "",
-"CharacterTemplate": ""
+"CharacterTemplate": "",
+"CinematicManager": ""
 }
 
 [application]

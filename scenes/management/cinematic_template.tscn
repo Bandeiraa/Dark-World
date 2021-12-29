@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/management/cinematic_manager.gd" type="Script" id=2]
+
+[node name="Cinematic" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Texture" type="Sprite" parent="."]
+vframes = 12
+frame = 4
+
+[node name="CinematicAnimation" type="AnimationPlayer" parent="."]
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+
+[connection signal="animation_finished" from="CinematicAnimation" to="." method="on_cinematic_animation_finished"]
+[connection signal="animation_finished" from="Animation" to="." method="on_aux_animation_finished"]

@@ -5,15 +5,23 @@ const LEVEL_HEIGHT: int = 320
 export(int) var level_width
 export(int) var collision_offset
 
+export(String) var level_name
+
 onready var wall_pos: Array = [0 - collision_offset, level_width + collision_offset]
 
 onready var dagger_mush: KinematicBody2D = get_node("DaggerMush")
 onready var main_camera: Camera2D = dagger_mush.get_node("Camera")
 
 func _ready() -> void:
+	Interface.get_node("FadeContainer").update_visual_message(level_name)
+	var _start = Interface.connect("start_level", self, "start_level")
 	set_camera_limits()
 	create_floor()
 	create_walls()
+	
+	
+func start_level() -> void:
+	pass
 	
 	
 func set_camera_limits() -> void:
