@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/environment/parallax_background.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/gui/interface.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/management/level_manager.gd" type="Script" id=3]
 
 [node name="LevelTutorial" type="Node2D"]
@@ -8,3 +9,6 @@ script = ExtResource( 3 )
 level_width = 576
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 1 )]
+layer = -1
+
+[node name="Interface" parent="." instance=ExtResource( 2 )]

@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://resources/shaders/fog.gdshader" type="Shader" id=1]
+[ext_resource path="res://assets/parallax_background/fog.png" type="Texture" id=2]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/speed = 0.05
+shader_param/fog_alpha = 15.0
+shader_param/smoke_color = Color( 1, 1, 1, 1 )
+shader_param/noise_img = ExtResource( 2 )
