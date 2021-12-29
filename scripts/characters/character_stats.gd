@@ -6,6 +6,7 @@ export(int) var max_fall_velocity = 300
 
 export(int) var run_speed
 export(int) var walk_speed
+export(int) var idle_speed_limit
 
 export(float) var friction
 export(float) var acceleration
