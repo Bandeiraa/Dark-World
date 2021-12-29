@@ -20,6 +20,7 @@ func _ready() -> void:
 	
 	
 func start_level() -> void:
+	Bgm.update_bgm("res://assets/bgm/spring.ogg", -20)
 	cinematic.play_cinematic()
 	
 	
