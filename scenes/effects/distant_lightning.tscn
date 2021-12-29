@@ -86,5 +86,8 @@ animations = [ {
 [node name="DistantLightning" instance=ExtResource( 1 )]
 frames = SubResource( 1 )
 animation = "effect"
+has_sfx = true
 min_wait_time = 3.0
 max_wait_time = 9.0
+sound_volume = -20.0
+sound = "res://assets/sfx/spark.ogg"
