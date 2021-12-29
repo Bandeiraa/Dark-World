@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/gui/fade_container.gd" type="Script" id=1]
-[ext_resource path="res://scripts/gui/interface.gd" type="Script" id=2]
+[ext_resource path="res://assets/parallax_background/black_bar.png" type="Texture" id=2]
+[ext_resource path="res://scripts/gui/interface.gd" type="Script" id=3]
 [ext_resource path="res://assets/fonts/bit_potion_ext.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=4]
@@ -141,7 +142,7 @@ tracks/3/keys = {
 }
 
 [node name="Interface" type="CanvasLayer"]
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="FadeContainer" type="Control" parent="."]
 anchor_right = 1.0
@@ -201,5 +202,20 @@ __meta__ = {
 anims/RESET = SubResource( 2 )
 anims/fade_in = SubResource( 1 )
 anims/fade_out = SubResource( 3 )
+
+[node name="VisualEnv" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlackBar" type="TextureRect" parent="VisualEnv"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="animation_finished" from="Animation" to="." method="on_animation_finished"]

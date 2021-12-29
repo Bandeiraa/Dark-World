@@ -13,5 +13,11 @@ frame = 4
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 
+[node name="Camera" type="Camera2D" parent="."]
+current = true
+limit_left = 0
+limit_top = 0
+limit_bottom = 320
+
 [connection signal="animation_finished" from="CinematicAnimation" to="." method="on_cinematic_animation_finished"]
 [connection signal="animation_finished" from="Animation" to="." method="on_aux_animation_finished"]

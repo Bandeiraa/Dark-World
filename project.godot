@@ -33,6 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Dark World"
+run/main_scene="res://scenes/levels/level_tutorial.tscn"
 config/icon="res://icon.png"
 
 [autoload]
