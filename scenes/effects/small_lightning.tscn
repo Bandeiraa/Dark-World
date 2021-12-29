@@ -86,3 +86,8 @@ animations = [ {
 [node name="SmallLightning" instance=ExtResource( 1 )]
 frames = SubResource( 1 )
 animation = "effect"
+has_sfx = true
+min_wait_time = 15.0
+max_wait_time = 45.0
+sound_volume = -25.0
+sound = "res://assets/sfx/spark.ogg"

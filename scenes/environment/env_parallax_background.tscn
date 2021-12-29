@@ -36,8 +36,9 @@ motion_mirroring = Vector2( 576, 0 )
 position = Vector2( 259, 212 )
 frame = 17
 playing = true
-min_wait_time = 1.0
-max_wait_time = 5.0
+min_wait_time = 25.0
+max_wait_time = 65.0
+sound_volume = -30.0
 
 [node name="Texture" type="TextureRect" parent="BackgroundMountains"]
 margin_top = 160.0
@@ -69,8 +70,8 @@ max_wait_time = 90.0
 
 [node name="SmallLightning" parent="ForegroundMountains/AnimatedEffects" instance=ExtResource( 8 )]
 position = Vector2( 304, 228 )
-min_wait_time = 10.0
-max_wait_time = 35.0
+min_wait_time = 15.0
+max_wait_time = 45.0
 
 [node name="Texture" type="TextureRect" parent="ForegroundMountains"]
 margin_top = 160.0
