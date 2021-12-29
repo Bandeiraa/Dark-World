@@ -16,3 +16,8 @@ gravity = 300
 max_fall_velocity = 350
 
 [node name="Animation" type="AnimationPlayer" parent="."]
+
+[node name="Camera" type="Camera2D" parent="."]
+current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true

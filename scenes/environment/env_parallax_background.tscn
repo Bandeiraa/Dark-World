@@ -9,7 +9,7 @@
 [ext_resource path="res://scenes/effects/small_lightning.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/effects/bubble_orb.tscn" type="PackedScene" id=10]
 
-[node name="ParallaxBackground" type="ParallaxBackground"]
+[node name="EnvParallaxBackground" type="ParallaxBackground"]
 layer = 0
 
 [node name="BackgroundSky" type="ParallaxLayer" parent="."]
@@ -27,6 +27,7 @@ __meta__ = {
 }
 
 [node name="BackgroundMountains" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.3, 1 )
 motion_mirroring = Vector2( 576, 0 )
 
 [node name="AnimatedEffects" type="Node2D" parent="BackgroundMountains"]
@@ -50,6 +51,7 @@ __meta__ = {
 }
 
 [node name="ForegroundMountains" type="ParallaxLayer" parent="."]
+motion_scale = Vector2( 0.4, 1 )
 motion_mirroring = Vector2( 576, 0 )
 
 [node name="AnimatedEffects" type="Node2D" parent="ForegroundMountains"]
