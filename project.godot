@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "DialogManager",
 "language": "GDScript",
 "path": "res://scripts/gui/dialog_container.gd"
+}, {
+"base": "Area2D",
+"class": "Hitbox",
+"language": "GDScript",
+"path": "res://scripts/combat/hitbox.gd"
 } ]
 _global_script_class_icons={
 "CharacterStats": "",
 "CharacterTemplate": "",
 "CinematicManager": "",
-"DialogManager": ""
+"DialogManager": "",
+"Hitbox": ""
 }
 
 [application]
