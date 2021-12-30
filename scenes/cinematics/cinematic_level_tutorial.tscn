@@ -47,7 +47,7 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "spawn_dialogue"
+"method": "spawn_dialog"
 } ]
 }
 tracks/2/type = "value"

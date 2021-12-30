@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal start_level
+signal dialog_finished
 
 onready var debug_information: VBoxContainer = get_node("DebugInformation")
 

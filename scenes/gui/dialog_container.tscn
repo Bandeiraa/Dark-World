@@ -1,0 +1,146 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/interface/dialog/dialog_container.png" type="Texture" id=1]
+[ext_resource path="res://assets/fonts/bit_potion_ext.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/interface/dialog/dialog_faceset.png" type="Texture" id=3]
+[ext_resource path="res://assets/interface/faceset/mush_dagger.png" type="Texture" id=4]
+[ext_resource path="res://assets/interface/dialog/dialog_confirm_button.png" type="Texture" id=5]
+[ext_resource path="res://scripts/gui/dialog_container.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+extra_spacing_top = 1
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 14
+extra_spacing_top = 1
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 247, 64 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "move"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 254, 68 ), Vector2( 254, 66 ) ]
+}
+
+[node name="DialogContainer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogBox" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -144.0
+margin_top = -122.0
+margin_right = 144.0
+margin_bottom = -42.0
+rect_min_size = Vector2( 288, 80 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogName" type="RichTextLabel" parent="DialogBox"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = -32.0
+margin_right = 8.0
+margin_bottom = -14.0
+rect_min_size = Vector2( 90, 0 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "Mush Dagger"
+text = "Mush Dagger"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogText" type="RichTextLabel" parent="DialogBox"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -60.0
+margin_top = -16.0
+margin_right = 116.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 90, 0 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "Mush Dagger"
+text = "Mush Dagger"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogFaceset" type="TextureRect" parent="DialogBox"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 10.0
+margin_top = -32.0
+margin_right = 64.0
+margin_bottom = 32.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Faceset" type="TextureRect" parent="DialogBox/DialogFaceset"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+texture = ExtResource( 4 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEndIndicator" type="Sprite" parent="DialogBox"]
+position = Vector2( 247, 64 )
+texture = ExtResource( 5 )
+
+[node name="Animation" type="AnimationPlayer" parent="DialogBox/TextEndIndicator"]
+autoplay = "move"
+anims/RESET = SubResource( 4 )
+anims/move = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
