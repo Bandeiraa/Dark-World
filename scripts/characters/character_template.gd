@@ -7,9 +7,9 @@ onready var animation: AnimationPlayer = get_node("Animation")
 
 var velocity: Vector2
 
-var on_attack: bool = false
+export(String) var current_attack
 
-var current_attack: String
+export(bool) var on_attack = false
 
 func _physics_process(delta: float) -> void:
 	handle_movement()
@@ -49,11 +49,13 @@ func gravity(delta: float) -> void:
 		
 		
 func attack() -> void:
-	var attack_pressed: bool = Input.is_action_pressed("attack")
-	if attack_pressed and Input.is_action_just_pressed("jump") and not on_attack:
+	var jump_attack: bool = Input.is_action_pressed("jump_attack")
+	var throw_dagger: bool = Input.is_action_just_pressed("throw_dagger")
+	
+	if jump_attack and Input.is_action_just_pressed("jump") and current_attack == "":
 		current_attack = "air_attack"
-		on_attack = true
-		set_physics_process(false)
+	elif throw_dagger and current_attack == "":
+		current_attack = "throw_dagger"
 		
 		
 func check_direction() -> void:
@@ -64,7 +66,7 @@ func check_direction() -> void:
 		
 		
 func animate() -> void:
-	if on_attack:
+	if current_attack != "":
 		attack_animation()
 		return
 		
@@ -73,8 +75,7 @@ func animate() -> void:
 		
 func move_animation() -> void:
 	if abs(velocity.x) > stats.idle_speed_limit and get_sprint():
-		#animation.play("run")
-		pass
+		animation.play("run")
 	elif abs(velocity.x) > stats.idle_speed_limit:
 		animation.play("walk")
 	else:
@@ -85,8 +86,5 @@ func attack_animation() -> void:
 	animation.play(current_attack)
 	
 	
-func on_animation_finished(anim_name: String) -> void:
-	match anim_name:
-		"air_attack":
-			on_attack = false
-			set_physics_process(true)
+func on_animation_finished(_anim_name: String) -> void:
+	pass
