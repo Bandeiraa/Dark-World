@@ -23,7 +23,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=5]
 resource_name = "cinematic"
-length = 9.7
+length = 7.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Animation:current_animation")
 tracks/0/interp = 1
@@ -31,7 +31,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 3.6, 5.1, 7.1, 7.9, 8.7 ),
+"times": PoolRealArray( 0, 1.5, 3, 4.5, 5.3, 6.1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 2,
 "values": [ "stunned", "grab_weapon", "weak", "walk", "walk", "idle" ]
@@ -43,9 +43,15 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 2.8 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.9, 4, 6.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "spawn_dialog"
+}, {
+"args": [  ],
+"method": "spawn_dialog"
+}, {
 "args": [  ],
 "method": "spawn_dialog"
 } ]
@@ -57,7 +63,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 7.1, 8.7 ),
+"times": PoolRealArray( 0, 4.5, 6.1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 16, 216 ), Vector2( 16, 216 ), Vector2( 144, 216 ) ]
@@ -307,6 +313,7 @@ tracks/2/keys = {
 
 [node name="CinematicLevelTutorial" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+text_path_list = [ "res://assets/dialog/tutorial_dialog_1.json", "res://assets/dialog/tutorial_dialog_2.json", "res://assets/dialog/tutorial_dialog_3.json" ]
 
 [node name="Texture" parent="." index="0"]
 position = Vector2( 16, 216 )

@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "CinematicManager",
 "language": "GDScript",
 "path": "res://scripts/management/cinematic_manager.gd"
+}, {
+"base": "Control",
+"class": "DialogManager",
+"language": "GDScript",
+"path": "res://scripts/gui/dialog_container.gd"
 } ]
 _global_script_class_icons={
 "CharacterStats": "",
 "CharacterTemplate": "",
-"CinematicManager": ""
+"CinematicManager": "",
+"DialogManager": ""
 }
 
 [application]

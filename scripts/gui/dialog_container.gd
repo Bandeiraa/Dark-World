@@ -1,4 +1,7 @@
 extends Control
+class_name DialogManager
+
+signal dialog_finished
 
 onready var text_indicator: Sprite = get_node("DialogBox/TextEndIndicator")
 
@@ -47,6 +50,7 @@ func get_dialog() -> Array:
 		
 func next_dialog() -> void:
 	if dialog_index >= len(dialog):
+		emit_signal("dialog_finished")
 		queue_free()
 		return
 		
@@ -58,6 +62,7 @@ func next_dialog() -> void:
 	
 	while dialog_text.visible_characters < len(dialog_text.text):
 		dialog_text.visible_characters += 1
+		timer.start()
 		yield(timer, "timeout")
 		
 	dialog_finished = true

@@ -3,6 +3,8 @@ extends CinematicManager
 signal spawn_player
 
 var current_cinematic_anim_time: float
+
+var connected_signal: bool = false
 var can_interact: bool = true
 
 var dialog_index: int = 0
@@ -20,13 +22,16 @@ func spawn_dialog() -> void:
 		current_cinematic_anim_time = stepify(cinematic_anim.get_current_animation_position(), 0.1)
 		cinematic_anim.stop()
 		Interface.spawn_dialog(text_path_list[dialog_index])
-		Interface.connect("dialog_finished", self, "on_dialog_finished")
+		if not connected_signal:
+			var _finished = Interface.connect("dialog_finished", self, "on_dialog_finished")
+			connected_signal = true
+			
 		can_interact = false
 		
 		
 func on_dialog_finished() -> void:
 		cinematic_anim.play("cinematic")
-		cinematic_anim.seek(current_cinematic_anim_time)
+		cinematic_anim.seek(current_cinematic_anim_time + 0.1)
 		can_interact = true
 		dialog_index += 1
 		
