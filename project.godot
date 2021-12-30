@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "Hitbox",
 "language": "GDScript",
 "path": "res://scripts/combat/hitbox.gd"
+}, {
+"base": "AudioStreamPlayer",
+"class": "Sfx",
+"language": "GDScript",
+"path": "res://scripts/environments/sfx.gd"
 } ]
 _global_script_class_icons={
 "CharacterStats": "",
 "CharacterTemplate": "",
 "CinematicManager": "",
 "DialogManager": "",
-"Hitbox": ""
+"Hitbox": "",
+"Sfx": ""
 }
 
 [application]

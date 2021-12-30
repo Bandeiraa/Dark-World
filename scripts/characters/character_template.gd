@@ -7,6 +7,7 @@ onready var animation: AnimationPlayer = get_node("Animation")
 
 var velocity: Vector2
 
+export(PackedScene) var sfx
 export(String) var current_attack
 
 export(bool) var on_attack = false
@@ -84,6 +85,12 @@ func move_animation() -> void:
 		
 func attack_animation() -> void:
 	animation.play(current_attack)
+	
+	
+func instance_sfx(sound: String, volume: int) -> void:
+	var sfx_scene: Sfx = sfx.instance()
+	sfx_scene.set_sfx(sound, volume)
+	get_tree().root.call_deferred("add_child", sfx_scene)
 	
 	
 func on_animation_finished(_anim_name: String) -> void:
