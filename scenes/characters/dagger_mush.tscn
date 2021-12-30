@@ -159,11 +159,20 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 1.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.8, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "values": [ {
 "args": [ false ],
 "method": "set_physics_process"
+}, {
+"args": [ "res://assets/sfx/jump.ogg", 0 ],
+"method": "instance_sfx"
+}, {
+"args": [ "res://assets/sfx/knife.ogg", -10 ],
+"method": "instance_sfx"
+}, {
+"args": [ "res://assets/sfx/knife.ogg", -10 ],
+"method": "instance_sfx"
 }, {
 "args": [ true ],
 "method": "set_physics_process"
