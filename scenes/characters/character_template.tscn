@@ -21,3 +21,5 @@ max_fall_velocity = 350
 current = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
+
+[connection signal="animation_finished" from="Animation" to="." method="on_animation_finished"]

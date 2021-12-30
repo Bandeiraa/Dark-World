@@ -39,5 +39,6 @@ color_ramp = SubResource( 7 )
 position = Vector2( 288, 0 )
 amount = 64
 lifetime = 3.0
+local_coords = false
 process_material = SubResource( 1 )
 texture = ExtResource( 1 )

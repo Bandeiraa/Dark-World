@@ -7,9 +7,14 @@ onready var animation: AnimationPlayer = get_node("Animation")
 
 var velocity: Vector2
 
+var on_attack: bool = false
+
+var current_attack: String
+
 func _physics_process(delta: float) -> void:
 	handle_movement()
 	gravity(delta)
+	attack()
 	velocity = move_and_slide(velocity, Vector2.UP)
 	check_direction()
 	animate()
@@ -43,6 +48,14 @@ func gravity(delta: float) -> void:
 		velocity.y = stats.max_fall_velocity
 		
 		
+func attack() -> void:
+	var attack_pressed: bool = Input.is_action_pressed("attack")
+	if attack_pressed and Input.is_action_just_pressed("jump") and not on_attack:
+		current_attack = "air_attack"
+		on_attack = true
+		set_physics_process(false)
+		
+		
 func check_direction() -> void:
 	if velocity.x > 0:
 		sprite.flip_h = false
@@ -51,6 +64,10 @@ func check_direction() -> void:
 		
 		
 func animate() -> void:
+	if on_attack:
+		attack_animation()
+		return
+		
 	move_animation()
 		
 		
@@ -62,3 +79,14 @@ func move_animation() -> void:
 		animation.play("walk")
 	else:
 		animation.play("idle")
+		
+		
+func attack_animation() -> void:
+	animation.play(current_attack)
+	
+	
+func on_animation_finished(anim_name: String) -> void:
+	match anim_name:
+		"air_attack":
+			on_attack = false
+			set_physics_process(true)
