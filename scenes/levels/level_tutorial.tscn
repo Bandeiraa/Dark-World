@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/environment/env_parallax_background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/environment/fog_parallax_background.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/characters/dagger_mush.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/cinematics/cinematic_level_tutorial.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/environment/bgm.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemies/flower.tscn" type="PackedScene" id=7]
 
 [node name="LevelTutorial" type="Node2D"]
 script = ExtResource( 3 )
@@ -21,3 +22,8 @@ layer = -1
 [node name="CinematicLevelTutorial" parent="." instance=ExtResource( 5 )]
 
 [node name="AudioStreamPlayer" parent="." instance=ExtResource( 6 )]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Flower" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 345, 240 )

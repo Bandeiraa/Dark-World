@@ -8,32 +8,43 @@ onready var sprite: Sprite = get_node("Texture")
 onready var animation: AnimationPlayer = get_node("Animation")
 
 var velocity: Vector2
+var on_hit: bool = false
+var on_attack: bool = false
 
 func _physics_process(_delta: float) -> void:
 	if detection_area.body_ref != null:
-		var distance: int = global_position.x - detection_area.body_ref.global_position.x
+		var distance: int = detection_area.body_ref.global_position.x - global_position.x
+		var direction: float = sign(distance)
 		if abs(distance) < stats.attack_limit:
-			attack()
+			attack(direction)
 		else:
-			move()
+			move(direction)
 			
 	else:
-		move()
-			
+		idle()
+		
+	animate()
 	velocity = move_and_slide(velocity, Vector2.UP)
 		
 		
-func move() -> void:
-	if detection_area.body_ref != null:
-		var direction: int = (global_position.x - detection_area.body_ref.global_position.x).normalized()
-		velocity.x = lerp(0, direction * stats.speed, stats.acceleration)
-	else:
-		velocity.x = lerp(velocity.x, 0, stats.friction)
-		
-		
-func attack() -> void:
+func idle() -> void:
+	velocity.x = lerp(velocity.x, 0, stats.friction)
+	
+	
+func move(direction: float) -> void:
+	velocity.x = lerp(0, direction * stats.speed, stats.acceleration)
+	
+	
+func attack(_direction: float) -> void:
 	pass
-	
-	
+		
+		
 func animate() -> void:
 	pass
+	
+	
+func change_direction() -> void:
+	if velocity.x > 0:
+		sprite.flip_h = false
+	elif velocity.x < 0:
+		sprite.flip_h = true
