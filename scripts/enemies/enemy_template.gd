@@ -8,7 +8,7 @@ onready var sprite: Sprite = get_node("Texture")
 onready var animation: AnimationPlayer = get_node("Animation")
 
 var velocity: Vector2
-var on_hit: bool = false
+
 var on_attack: bool = false
 
 func _physics_process(_delta: float) -> void:
@@ -28,10 +28,12 @@ func _physics_process(_delta: float) -> void:
 		
 		
 func idle() -> void:
+	on_attack = false
 	velocity.x = lerp(velocity.x, 0, stats.friction)
 	
 	
 func move(direction: float) -> void:
+	on_attack = false
 	velocity.x = lerp(0, direction * stats.speed, stats.acceleration)
 	
 	

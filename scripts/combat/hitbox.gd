@@ -1,23 +1,23 @@
 extends Area2D
 class_name Hitbox
 
-var invulnerability_time: float
+export(float) var invulnerability_time
 
 onready var timer: Timer = get_node("Timer")
 
-func on_body_entered(_body: Object) -> void:
+func on_body_entered(_body) -> void:
 	pass
 	
 	
-func on_body_exited(_body: Object) -> void:
+func on_body_exited(_body) -> void:
 	pass
 	
 	
-func on_area_entered(_area: Object) -> void:
+func on_area_entered(_area) -> void:
 	pass
 	
 	
-func on_area_exited(_area: Object) -> void:
+func on_area_exited(_area) -> void:
 	pass
 	
 	

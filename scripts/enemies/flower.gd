@@ -1,5 +1,5 @@
 extends EnemyTemplate
-
+	
 func attack(direction: float) -> void:
 	on_attack = true
 	velocity.x = lerp(0, direction * stats.attack_speed, stats.acceleration)
@@ -7,15 +7,16 @@ func attack(direction: float) -> void:
 	
 func animate() -> void:
 	change_direction()
-	if on_hit:
+	if stats.on_hit:
 		hit_animation()
-	if on_attack and not on_hit:
+	elif on_attack and not stats.on_hit:
 		attack_animation()
 	else:
 		move_animation()
 		
 		
 func hit_animation() -> void:
+	set_physics_process(false)
 	if stats.health <= 0:
 		animation.play("death")
 		return
@@ -32,3 +33,9 @@ func move_animation() -> void:
 		animation.play("move")
 	else:
 		animation.play("idle")
+		
+		
+func on_animation_finished(anim_name: String) -> void:
+	match anim_name:
+		"death":
+			queue_free()

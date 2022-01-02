@@ -1,6 +1,8 @@
 extends KinematicBody2D
 class_name CharacterTemplate
 
+onready var hitbox_collision: CollisionShape2D = get_node("Hitbox/Collision")
+
 onready var stats: Node = get_node("Stats")
 onready var sprite: Sprite = get_node("Texture")
 onready var animation: AnimationPlayer = get_node("Animation")
@@ -17,7 +19,6 @@ func _physics_process(delta: float) -> void:
 	gravity(delta)
 	attack()
 	velocity = move_and_slide(velocity, Vector2.UP)
-	check_direction()
 	animate()
 	
 	
@@ -59,19 +60,22 @@ func attack() -> void:
 		current_attack = "throw_dagger"
 		
 		
-func check_direction() -> void:
-	if velocity.x > 0:
-		sprite.flip_h = false
-	elif velocity.x < 0:
-		sprite.flip_h = true
-		
-		
 func animate() -> void:
+	check_direction()
 	if current_attack != "":
 		attack_animation()
 		return
 		
 	move_animation()
+		
+		
+func check_direction() -> void:
+	if velocity.x > 0:
+		hitbox_collision.position = Vector2(2, 30)
+		sprite.flip_h = false
+	elif velocity.x < 0:
+		hitbox_collision.position = Vector2(-2, 30)
+		sprite.flip_h = true
 		
 		
 func move_animation() -> void:

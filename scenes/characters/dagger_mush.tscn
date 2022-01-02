@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/characters/character_template.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/characters/dagger_mush/idle.png" type="Texture" id=2]
@@ -7,9 +7,10 @@
 [ext_resource path="res://assets/characters/dagger_mush/run.png" type="Texture" id=5]
 [ext_resource path="res://assets/characters/dagger_mush/throw_dagger.png" type="Texture" id=6]
 [ext_resource path="res://scenes/combat/hitbox.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scripts/characters/character_hitbox.gd" type="Script" id=8]
+[ext_resource path="res://scripts/combat/player_hitbox.gd" type="Script" id=8]
 [ext_resource path="res://scenes/combat/hurtbox.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/environment/sfx.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scripts/combat/player_hurtbox.gd" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 9, 10.5 )
@@ -200,7 +201,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 3 ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Hurtbox/Collision:shape:extents")
@@ -414,7 +415,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 2 ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("Hurtbox/Collision:shape:extents")
@@ -506,6 +507,10 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 11.0
+height = 0.0
+
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 0, 0 )
 
@@ -540,10 +545,15 @@ anims/walk = SubResource( 3 )
 [node name="Hitbox" parent="." index="5" instance=ExtResource( 7 )]
 script = ExtResource( 8 )
 
+[node name="Collision" parent="Hitbox" index="0"]
+position = Vector2( 2, 30 )
+shape = SubResource( 9 )
+
 [node name="Hurtbox" parent="." index="6" instance=ExtResource( 9 )]
+script = ExtResource( 11 )
+type = "Damage"
 
 [node name="Collision" parent="Hurtbox" index="0"]
-scale = Vector2( 1, 1 )
 shape = SubResource( 8 )
 disabled = true
 

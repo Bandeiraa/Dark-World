@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Hitbox",
+"class": "CharacterHitbox",
+"language": "GDScript",
+"path": "res://scripts/combat/player_hitbox.gd"
+}, {
+"base": "Hurtbox",
+"class": "CharacterHurtbox",
+"language": "GDScript",
+"path": "res://scripts/combat/player_hurtbox.gd"
+}, {
 "base": "Node",
 "class": "CharacterStats",
 "language": "GDScript",
@@ -33,6 +43,16 @@ _global_script_classes=[ {
 "class": "DialogManager",
 "language": "GDScript",
 "path": "res://scripts/gui/dialog_container.gd"
+}, {
+"base": "Hitbox",
+"class": "EnemyHitbox",
+"language": "GDScript",
+"path": "res://scripts/combat/enemy_hitbox.gd"
+}, {
+"base": "Hurtbox",
+"class": "EnemyHurtbox",
+"language": "GDScript",
+"path": "res://scripts/combat/enemy_hurtbox.gd"
 }, {
 "base": "Node",
 "class": "EnemyStats",
@@ -60,11 +80,15 @@ _global_script_classes=[ {
 "path": "res://scripts/environments/sfx.gd"
 } ]
 _global_script_class_icons={
+"CharacterHitbox": "",
+"CharacterHurtbox": "",
 "CharacterStats": "",
 "CharacterTemplate": "",
 "CinematicManager": "",
 "DetectionArea": "",
 "DialogManager": "",
+"EnemyHitbox": "",
+"EnemyHurtbox": "",
 "EnemyStats": "",
 "EnemyTemplate": "",
 "Hitbox": "",
