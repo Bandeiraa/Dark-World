@@ -7,11 +7,17 @@ onready var stats: Node = get_node("Stats")
 onready var sprite: Sprite = get_node("Texture")
 onready var animation: AnimationPlayer = get_node("Animation")
 
+onready var knockback_timer: Timer = get_node("Knockback")
+
 var velocity: Vector2
 
 var on_attack: bool = false
+var can_knockback: bool = false
 
 func _physics_process(_delta: float) -> void:
+	if can_knockback:
+		knockback()
+		
 	if detection_area.body_ref != null:
 		var distance: int = detection_area.body_ref.global_position.x - global_position.x
 		var direction: float = sign(distance)
@@ -24,7 +30,8 @@ func _physics_process(_delta: float) -> void:
 		idle()
 		
 	animate()
-	velocity = move_and_slide(velocity, Vector2.UP)
+	if not can_knockback:
+		velocity = move_and_slide(velocity, Vector2.UP)
 		
 		
 func idle() -> void:
@@ -41,6 +48,10 @@ func attack(_direction: float) -> void:
 	pass
 		
 		
+func knockback() -> void:
+	pass
+	
+	
 func animate() -> void:
 	pass
 	

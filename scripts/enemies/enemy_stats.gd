@@ -7,6 +7,7 @@ export(int) var gravity = 100
 export(int) var max_fall_velocity = 300
 
 export(int) var attack_limit
+export(int) var knockback_force
 
 export(int) var speed
 export(int) var attack_speed
@@ -16,6 +17,7 @@ export(bool) var on_hit
 
 export(float) var friction
 export(float) var acceleration
+export(float) var knockback_length
 
 func update_health(amount: int, type: String) -> void:
 	match type:

@@ -357,20 +357,6 @@ tracks/3/keys = {
 "update": 1,
 "values": [ false ]
 }
-tracks/4/type = "method"
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ true ],
-"method": "set_physics_process"
-} ]
-}
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -660,11 +646,13 @@ shape = SubResource( 4 )
 
 [node name="Stats" parent="." index="2"]
 health = 5
+knockback_force = 150
 run_speed = 150
 walk_speed = 100
 idle_speed_limit = 2
 friction = 0.5
 acceleration = 0.45
+knockback_length = 0.4
 
 [node name="Animation" parent="." index="3"]
 autoplay = "idle"
@@ -688,13 +676,16 @@ shape = SubResource( 9 )
 [node name="Hurtbox" parent="." index="6" instance=ExtResource( 9 )]
 script = ExtResource( 11 )
 type = "Damage"
+invulnerability_time = 1.4
 
 [node name="Collision" parent="Hurtbox" index="0"]
 visible = false
 shape = SubResource( 8 )
 disabled = true
 
+[connection signal="knockback" from="Hitbox" to="." method="knockback_signal"]
 [connection signal="update_health" from="Hitbox" to="Stats" method="update_health"]
+[connection signal="timeout" from="KnockbackTimer" to="." method="on_knockback_timeout"]
 
 [editable path="Hitbox"]
 [editable path="Hurtbox"]

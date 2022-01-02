@@ -1,6 +1,8 @@
 extends KinematicBody2D
 class_name CharacterTemplate
 
+onready var knockback_timer: Timer = get_node("KnockbackTimer")
+
 onready var hitbox_collision: CollisionShape2D = get_node("Hitbox/Collision")
 onready var hurtbox: Area2D = get_node("Hurtbox")
 
@@ -9,6 +11,10 @@ onready var sprite: Sprite = get_node("Texture")
 onready var animation: AnimationPlayer = get_node("Animation")
 
 var velocity: Vector2
+var repulsion: Vector2
+var enemy_pos: Vector2
+
+var can_knockback: bool = false
 
 export(PackedScene) var sfx
 export(String) var current_attack
@@ -19,7 +25,11 @@ func _physics_process(delta: float) -> void:
 	handle_movement()
 	gravity(delta)
 	attack()
-	velocity = move_and_slide(velocity, Vector2.UP)
+	if not can_knockback:
+		velocity = move_and_slide(velocity, Vector2.UP)
+	else:
+		knockback()
+		
 	animate()
 	
 	
@@ -98,8 +108,8 @@ func attack_animation() -> void:
 	
 	
 func hit_animation() -> void:
-	set_physics_process(false)
 	if stats.health <= 0:
+		set_physics_process(false)
 		animation.play("death")
 		return
 		
@@ -116,3 +126,23 @@ func on_animation_finished(anim_name: String) -> void:
 	match anim_name:
 		"death":
 			queue_free()
+			
+			
+func knockback_signal(pos: Vector2) -> void:
+	enemy_pos = pos
+	can_knockback = true
+	knockback_timer.start(stats.knockback_length)
+	
+	
+func knockback() -> void:
+	velocity.x = 0
+	var direction: float = sign(global_position.x - enemy_pos.x)
+	repulsion.x = lerp(repulsion.x, direction * stats.knockback_force, stats.acceleration)
+	
+	repulsion = move_and_slide(repulsion)
+	
+	
+func on_knockback_timeout() -> void:
+	enemy_pos = Vector2.ZERO
+	repulsion = Vector2.ZERO
+	can_knockback = false

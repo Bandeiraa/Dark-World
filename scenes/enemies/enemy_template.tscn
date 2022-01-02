@@ -17,3 +17,5 @@ script = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="DetectionArea" parent="." instance=ExtResource( 3 )]
+
+[node name="Knockback" type="Timer" parent="."]
