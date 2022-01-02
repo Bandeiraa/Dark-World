@@ -373,7 +373,6 @@ shape = SubResource( 8 )
 
 [node name="Hitbox" parent="." index="5" instance=ExtResource( 8 )]
 script = ExtResource( 9 )
-invulnerability_time = 2.0
 
 [node name="Collision" parent="Hitbox" index="0"]
 visible = false
@@ -384,6 +383,7 @@ shape = SubResource( 9 )
 script = ExtResource( 11 )
 damage = 3
 type = "Damage"
+invulnerability_time = 1.0
 
 [node name="Collision" parent="Hurtbox" index="0"]
 shape = SubResource( 10 )

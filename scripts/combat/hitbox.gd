@@ -1,8 +1,6 @@
 extends Area2D
 class_name Hitbox
 
-export(float) var invulnerability_time
-
 onready var timer: Timer = get_node("Timer")
 
 func on_body_entered(_body) -> void:
