@@ -183,20 +183,6 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3 ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ false ],
-"method": "set_physics_process"
-} ]
-}
 
 [sub_resource type="Animation" id=6]
 resource_name = "hit"
@@ -390,6 +376,7 @@ script = ExtResource( 9 )
 invulnerability_time = 2.0
 
 [node name="Collision" parent="Hitbox" index="0"]
+visible = false
 position = Vector2( 0, 10.5 )
 shape = SubResource( 9 )
 

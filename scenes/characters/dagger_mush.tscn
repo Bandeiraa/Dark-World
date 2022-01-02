@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/characters/character_template.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/characters/dagger_mush/idle.png" type="Texture" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://scenes/combat/hurtbox.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/environment/sfx.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scripts/combat/player_hurtbox.gd" type="Script" id=11]
+[ext_resource path="res://assets/characters/dagger_mush/hit.png" type="Texture" id=12]
+[ext_resource path="res://assets/characters/dagger_mush/death.png" type="Texture" id=13]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 9, 10.5 )
@@ -246,10 +248,116 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0, 0.8, 0.9, 1, 1.2 ),
+"times": PoolRealArray( 0, 0.8, 0.9, 1, 1.1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true, false, true ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "death"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 13 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Texture:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Texture:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Texture:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Texture:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Stats:on_hit")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ true ],
+"method": "set_physics_process"
+} ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -527,6 +635,7 @@ position = Vector2( 1, 29.5 )
 shape = SubResource( 4 )
 
 [node name="Stats" parent="." index="2"]
+health = 5
 run_speed = 150
 walk_speed = 100
 idle_speed_limit = 2
@@ -537,6 +646,8 @@ acceleration = 0.45
 autoplay = "idle"
 anims/RESET = SubResource( 1 )
 anims/air_attack = SubResource( 5 )
+anims/death = SubResource( 11 )
+anims/hit = SubResource( 10 )
 anims/idle = SubResource( 2 )
 anims/run = SubResource( 6 )
 anims/throw_dagger = SubResource( 7 )
@@ -544,8 +655,10 @@ anims/walk = SubResource( 3 )
 
 [node name="Hitbox" parent="." index="5" instance=ExtResource( 7 )]
 script = ExtResource( 8 )
+invulnerability_time = 0.5
 
 [node name="Collision" parent="Hitbox" index="0"]
+visible = false
 position = Vector2( 2, 30 )
 shape = SubResource( 9 )
 
@@ -554,8 +667,11 @@ script = ExtResource( 11 )
 type = "Damage"
 
 [node name="Collision" parent="Hurtbox" index="0"]
+visible = false
 shape = SubResource( 8 )
 disabled = true
+
+[connection signal="update_health" from="Hitbox" to="Stats" method="update_health"]
 
 [editable path="Hitbox"]
 [editable path="Hurtbox"]

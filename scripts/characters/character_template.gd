@@ -2,6 +2,7 @@ extends KinematicBody2D
 class_name CharacterTemplate
 
 onready var hitbox_collision: CollisionShape2D = get_node("Hitbox/Collision")
+onready var hurtbox: Area2D = get_node("Hurtbox")
 
 onready var stats: Node = get_node("Stats")
 onready var sprite: Sprite = get_node("Texture")
@@ -62,18 +63,23 @@ func attack() -> void:
 		
 func animate() -> void:
 	check_direction()
-	if current_attack != "":
-		attack_animation()
+	if not stats.on_hit and current_attack == "":
+		move_animation()
 		return
 		
-	move_animation()
+	if stats.on_hit:
+		hit_animation()
+	elif current_attack != "":
+		attack_animation()
 		
 		
 func check_direction() -> void:
 	if velocity.x > 0:
 		hitbox_collision.position = Vector2(2, 30)
+		hurtbox.scale.x = 1
 		sprite.flip_h = false
 	elif velocity.x < 0:
+		hurtbox.scale.x = -1
 		hitbox_collision.position = Vector2(-2, 30)
 		sprite.flip_h = true
 		
@@ -91,11 +97,22 @@ func attack_animation() -> void:
 	animation.play(current_attack)
 	
 	
+func hit_animation() -> void:
+	set_physics_process(false)
+	if stats.health <= 0:
+		animation.play("death")
+		return
+		
+	animation.play("hit")
+	
+	
 func instance_sfx(sound: String, volume: int) -> void:
 	var sfx_scene: Sfx = sfx.instance()
 	sfx_scene.set_sfx(sound, volume)
 	get_tree().root.call_deferred("add_child", sfx_scene)
 	
 	
-func on_animation_finished(_anim_name: String) -> void:
-	pass
+func on_animation_finished(anim_name: String) -> void:
+	match anim_name:
+		"death":
+			queue_free()
