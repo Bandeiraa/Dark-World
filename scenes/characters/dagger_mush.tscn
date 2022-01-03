@@ -645,7 +645,7 @@ position = Vector2( 1, 29.5 )
 shape = SubResource( 4 )
 
 [node name="Stats" parent="." index="2"]
-health = 5
+health = 15
 knockback_force = 150
 run_speed = 150
 walk_speed = 100
