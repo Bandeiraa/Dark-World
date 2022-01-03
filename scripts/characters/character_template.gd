@@ -1,6 +1,8 @@
 extends KinematicBody2D
 class_name CharacterTemplate
 
+onready var camera: Camera2D = get_node("Camera")
+
 onready var knockback_timer: Timer = get_node("KnockbackTimer")
 
 onready var hitbox_collision: CollisionShape2D = get_node("Hitbox/Collision")
@@ -113,6 +115,7 @@ func hit_animation() -> void:
 		animation.play("death")
 		return
 		
+	camera.add_trauma(0.1)
 	animation.play("hit")
 	
 	

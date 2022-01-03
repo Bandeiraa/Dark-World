@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Camera2D",
+"class": "CharacterCamera",
+"language": "GDScript",
+"path": "res://scripts/characters/camera.gd"
+}, {
 "base": "Hitbox",
 "class": "CharacterHitbox",
 "language": "GDScript",
@@ -80,6 +85,7 @@ _global_script_classes=[ {
 "path": "res://scripts/environments/sfx.gd"
 } ]
 _global_script_class_icons={
+"CharacterCamera": "",
 "CharacterHitbox": "",
 "CharacterHurtbox": "",
 "CharacterStats": "",
