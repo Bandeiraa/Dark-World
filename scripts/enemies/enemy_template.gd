@@ -10,6 +10,8 @@ onready var animation: AnimationPlayer = get_node("Animation")
 onready var knockback_timer: Timer = get_node("Knockback")
 
 var velocity: Vector2
+var repulsion: Vector2
+var player_pos: Vector2
 
 var on_attack: bool = false
 var can_knockback: bool = false
@@ -46,10 +48,6 @@ func move(direction: float) -> void:
 	
 func attack(_direction: float) -> void:
 	pass
-		
-		
-func knockback() -> void:
-	pass
 	
 	
 func animate() -> void:
@@ -61,3 +59,27 @@ func change_direction() -> void:
 		sprite.flip_h = false
 	elif velocity.x < 0:
 		sprite.flip_h = true
+		
+		
+func knockback_signal(pos: Vector2) -> void:
+	player_pos = pos
+	can_knockback = true
+	knockback_timer.start(stats.knockback_length)
+	
+	
+func knockback() -> void:
+	velocity.x = 0
+	var direction: float = sign(global_position.x - player_pos.x)
+	repulsion.x = lerp(repulsion.x, direction * stats.knockback_force, stats.acceleration)
+	
+	repulsion = move_and_slide(repulsion)
+	
+	
+func on_knockback_timeout() -> void:
+	player_pos = Vector2.ZERO
+	repulsion = Vector2.ZERO
+	can_knockback = false
+	
+	
+func on_animation_finished(_anim_name: String) -> void:
+	pass

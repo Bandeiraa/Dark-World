@@ -123,12 +123,6 @@ func instance_sfx(sound: String, volume: int) -> void:
 	var sfx_scene: Sfx = sfx.instance()
 	sfx_scene.set_sfx(sound, volume)
 	get_tree().root.call_deferred("add_child", sfx_scene)
-	
-	
-func on_animation_finished(anim_name: String) -> void:
-	match anim_name:
-		"death":
-			queue_free()
 			
 			
 func knockback_signal(pos: Vector2) -> void:
@@ -149,3 +143,8 @@ func on_knockback_timeout() -> void:
 	enemy_pos = Vector2.ZERO
 	repulsion = Vector2.ZERO
 	can_knockback = false
+	
+func on_animation_finished(anim_name: String) -> void:
+	match anim_name:
+		"death":
+			queue_free()

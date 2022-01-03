@@ -1,8 +1,5 @@
 extends EnemyTemplate
-
-var repulsion: Vector2
-var player_pos: Vector2 
-
+ 
 func attack(direction: float) -> void:
 	on_attack = true
 	velocity.x = lerp(0, direction * stats.attack_speed, stats.acceleration)
@@ -42,23 +39,3 @@ func on_animation_finished(anim_name: String) -> void:
 	match anim_name:
 		"death":
 			queue_free()
-			
-			
-func knockback_signal(pos: Vector2) -> void:
-	player_pos = pos
-	can_knockback = true
-	knockback_timer.start(stats.knockback_length)
-	
-	
-func knockback() -> void:
-	velocity.x = 0
-	var direction: float = sign(global_position.x - player_pos.x)
-	repulsion.x = lerp(repulsion.x, direction * stats.knockback_force, stats.acceleration)
-	
-	repulsion = move_and_slide(repulsion)
-	
-	
-func on_knockback_timeout() -> void:
-	player_pos = Vector2.ZERO
-	repulsion = Vector2.ZERO
-	can_knockback = false
