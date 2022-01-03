@@ -351,17 +351,22 @@ friction = 0.35
 acceleration = 0.5
 knockback_length = 0.4
 
-[node name="Collision" parent="DetectionArea" index="0"]
+[node name="DetectionArea" parent="." index="4"]
 visible = false
+
+[node name="Collision" parent="DetectionArea" index="0"]
 position = Vector2( 0, 6 )
 shape = SubResource( 8 )
 
-[node name="Collision" parent="Hitbox" index="0"]
+[node name="Hitbox" parent="." index="5"]
 visible = false
+
+[node name="Collision" parent="Hitbox" index="0"]
 position = Vector2( 0, 10.5 )
 shape = SubResource( 9 )
 
 [node name="Hurtbox" parent="." index="6"]
+visible = false
 script = ExtResource( 11 )
 damage = 3
 type = "Damage"
