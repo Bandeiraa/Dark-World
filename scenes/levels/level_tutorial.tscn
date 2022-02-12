@@ -11,7 +11,7 @@
 [node name="LevelTutorial" type="Node2D"]
 script = ExtResource( 3 )
 level_width = 1152
-level_name = "Picos de Luz"
+level_name = "?????"
 player = ExtResource( 4 )
 
 [node name="EnvParallaxBackground" parent="." instance=ExtResource( 1 )]
