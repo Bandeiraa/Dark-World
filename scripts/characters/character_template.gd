@@ -16,6 +16,7 @@ var velocity: Vector2
 var repulsion: Vector2
 var enemy_pos: Vector2
 
+var handle_input: bool = true
 var can_knockback: bool = false
 
 export(PackedScene) var sfx
@@ -24,14 +25,15 @@ export(String) var current_attack
 export(bool) var on_attack = false
 
 func _physics_process(delta: float) -> void:
-	handle_movement()
-	gravity(delta)
-	attack()
-	if not can_knockback:
-		velocity = move_and_slide(velocity, Vector2.UP)
-	else:
-		knockback()
-		
+	if handle_input:
+		handle_movement()
+		gravity(delta)
+		attack()
+		if not can_knockback:
+			velocity = move_and_slide(velocity, Vector2.UP)
+		else:
+			knockback()
+			
 	animate()
 	
 	

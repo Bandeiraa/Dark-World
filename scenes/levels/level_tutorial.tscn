@@ -26,4 +26,4 @@ layer = -1
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Flower" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( 345, 240 )
+position = Vector2( 648, 240 )
