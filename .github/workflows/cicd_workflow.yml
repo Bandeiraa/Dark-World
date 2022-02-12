@@ -8,7 +8,7 @@ name: "Build and Deploy to Itch io"
 env:
   GODOT_VERSION: 3.4.2
   EXPORT_NAME: dark_world_test
-  ITCH_USERNAME: DaviBandeiraa
+  ITCH_USERNAME: DevBandeira
   ITCH_GAME_ID: dark-world
   
 jobs:
